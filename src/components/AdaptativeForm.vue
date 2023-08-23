@@ -1,39 +1,52 @@
 <template>
     <div id="uform">
-      <h1>Formulaire TalkMe</h1>
+      <h1>Formulaire <span style="color:grey;">Talk</span><span style="color:orange">Me</span></h1>
       <form class="d-flex flex-column justify-content-center align-items-center">
         <div class="container d-flex justify-content-center align-items-center flex-column">
-            <div>
-                <label for="sector">Sélectionnez votre secteur d'activité :</label>
-            </div>
-            <div class="col-3">
-              <select v-model="selectedSector" id="sector" class="form-select col-5">
-                <option value="">Choisissez un secteur</option>
-                <option v-for="sector in sectors" :key="sector.value" :value="sector.value">{{ sector.label }}</option>
-              </select>
-            </div>
-        </div>
-  
-        <div v-if="selectedSector" :class="[selectedSector + '-section', 'section']" class="col-10">
-          <h2>Questions pour le secteur {{ selectedSector }}</h2>
-          <div v-for="(question, index) in getQuestions(selectedSector)" :key="index" v-show="currentQuestion === index">
-            <p>{{ question.label }}</p>
-            <template v-if="question.type === 'radio'">
-                <div class="d-flex justify-content-center flex-wrap">
-                    <div v-for="(option, optionIndex) in question.options" :key="optionIndex">
-                        <label>
-                          <input :type="question.type" :name="'question-' + index" :value="option" v-model="question.answers[selectedSector]" @change="nextQuestion" hidden />
-                          <div class="card m-3 justify-content-center align-item-center" style="width: 150px; height: 150px;">{{ option }}</div>
+            
+              <div class="col-10">
+                <div :class="[selectedSector + '-section', 'section']">
+                    <h3 class="mb-4">Sélectionnez votre secteur d'activité</h3>
+                    
+                    <div class="d-flex justify-content-around">
+                        <label v-for="sector in sectors" :key="sector.value">
+                            <input type="checkbox" :id="sector.value" class="card-checkbox" :value="sector.value" v-model="selectedSectors" hidden>
+                            <div class="card-checkbox">
+                              {{ sector.label }}
+                            </div>
                         </label>
                     </div>
+
+                    <div v-for="(question, index) in getQuestions(selectedSectors)" :key="index" v-show="currentQuestion === index">
+                        <p>{{ question.label }}</p>
+                        <!-- Reste de la logique pour les questions -->
+                    </div>
                 </div>
-            </template>
-            <template v-else-if="question.type === 'select'">
-              <select v-model="question.answers[selectedSector]" @change="nextQuestion">
-                <option value="">Choisissez une réponse</option>
-                <option v-for="(option, optionIndex) in question.options" :key="optionIndex" :value="option">{{ option }}</option>
-              </select>
-            </template>
+            </div>
+        </div>
+        
+        <div style="height: 70vh;" class="bg-warning col-10">
+          <div :class="[selectedSector + '-section', 'section']">
+            <h2>Questions pour le secteur {{ selectedSector }}</h2>
+            <div v-for="(question, index) in getQuestions(selectedSector)" :key="index" v-show="currentQuestion === index">
+              <p>{{ question.label }}</p>
+              <template v-if="question.type === 'radio'">
+                  <div class="d-flex justify-content-center flex-wrap">
+                      <div v-for="(option, optionIndex) in question.options" :key="optionIndex">
+                          <label>
+                            <input :type="question.type" :name="'question-' + index" :value="option" v-model="question.answers[selectedSector]" @change="nextQuestion" hidden />
+                            <div class="card m-3 justify-content-center align-item-center" style="width: 150px; height: 150px;">{{ option }}</div>
+                          </label>
+                      </div>
+                  </div>
+              </template>
+              <template v-else-if="question.type === 'select'">
+                <select v-model="question.answers[selectedSector]" @change="nextQuestion">
+                  <option value="">Choisissez une réponse</option>
+                  <option v-for="(option, optionIndex) in question.options" :key="optionIndex" :value="option">{{ option }}</option>
+                </select>
+              </template>
+            </div>
           </div>
         </div>
   
@@ -123,6 +136,46 @@
   <style>
   #uform{
     padding-top: 50px;
+  }
+  div.card-checkbox{
+    position: relative;
+    cursor: pointer;
+    margin: 3px;
+    padding: 10px;
+    width: 150px;
+    border: solid rgba(107, 81, 235, 0.212) 2px;
+    border-radius: 10px;
+    transition: all .5s ease-out;
+  }
+  div.card-checkbox:hover{
+    background: #71757a17;
+    outline: solid #4A586F 2px;
+    outline-offset: -1px;
+    transition: all .2s ease-out;
+  }
+  input.card-checkbox:checked + div.card-checkbox:hover{
+    outline: solid #4A586F 2px;
+    outline-offset: 2px;
+  }
+
+  input.card-checkbox:checked + div.card-checkbox{
+    border-radius: 10px;
+    color: white;
+    background: #4A586F;
+    transition: all .2s ease-out;
+  }
+  input.card-checkbox:checked + div.card-checkbox::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+    border: solid white 2px;
+    margin: 2px;
+    background:rgb(0, 200, 0);
+    
   }
   .agriculture-section {
     background-color: green;
