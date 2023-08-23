@@ -19,6 +19,10 @@ export default {
 </script>
 
 <style>
+body{
+  background: rgb(248, 246, 238);
+
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
