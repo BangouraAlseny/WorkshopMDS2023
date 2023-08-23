@@ -1,17 +1,24 @@
-# Workshop MDS 2023 groupe B
+# adaptative-form
 
-Ce repository contient le code source du projet réalisé pour le workshop MDS 2023
-
-## Commandes 
-
-```sh
-git pull
+## Project setup
+```
 npm install
-npm run build
-npm run dev
 ```
 
-## Description
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-Le projet contient 3 pages : 
+### Compiles and minifies for production
+```
+npm run build
+```
 
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
