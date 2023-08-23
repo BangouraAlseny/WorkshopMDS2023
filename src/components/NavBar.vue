@@ -4,17 +4,17 @@
 
             <aside id="sidebar-wrapper">
               <div class="sidebar-brand">
-                  <h2>Logo</h2>
+                  <h2><span style="color:grey">T</span><span style="color:orange">M</span></h2>
               </div>
               <ul class="sidebar-nav">
                   <li class="active">
-                  <a href="#"><i class="fa fa-home"></i>Home</a>
+                  <a href="#" title="Accueil"><i class="fa fa-home"></i></a>
                   </li>
                   <li>
-                  <a href="#"><i class="fa fa-plug"></i>Plugins</a>
+                  <a href="#" title="Modules"><i class="fa fa-plug"></i></a>
                   </li>
                   <li>
-                  <a href="#"><i class="fa fa-user"></i>Users</a>
+                  <a href="#" title="Connexion"><i class="fa fa-user"></i></a>
                   </li>
               </ul>
             </aside>
@@ -81,7 +81,6 @@ a:focus {
   list-style: none;
 }
 .sidebar-nav > li {
-  text-indent: 10px;
   line-height: 42px;
 }
 .sidebar-nav > li a {
@@ -90,12 +89,13 @@ a:focus {
   color: #757575;
   font-weight: 600;
   font-size: 18px;
+  padding: 0 15px 0 0;
 }
 .sidebar-nav > li > a:hover,
 .sidebar-nav > li.active > a {
   text-decoration: none;
   color: #fff;
-  background: #F8BE12;
+  background: orange;
 }
 .sidebar-nav > li > a i.fa {
   font-size: 24px;

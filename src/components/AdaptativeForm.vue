@@ -6,10 +6,12 @@
             <div>
                 <label for="sector">Sélectionnez votre secteur d'activité :</label>
             </div>
-          <select v-model="selectedSector" id="sector" class="col-5">
-            <option value="">Choisissez un secteur</option>
-            <option v-for="sector in sectors" :key="sector.value" :value="sector.value">{{ sector.label }}</option>
-          </select>
+            <div class="col-3">
+              <select v-model="selectedSector" id="sector" class="form-select col-5">
+                <option value="">Choisissez un secteur</option>
+                <option v-for="sector in sectors" :key="sector.value" :value="sector.value">{{ sector.label }}</option>
+              </select>
+            </div>
         </div>
   
         <div v-if="selectedSector" :class="[selectedSector + '-section', 'section']" class="col-10">
@@ -72,13 +74,13 @@
             // Ajoutez d'autres questions pour le secteur automobile
           ],
           technologie: [
-            { label: 'Quel langage de programmation préférez-vous ?', type: 'select', options: ['JavaScript', 'Python', 'Java', 'C++'], answers: { technologie: '' } },
+            { label: 'Quel langage de programmation préférez-vous ?', type: 'radio', options: ['JavaScript', 'Python', 'Java', 'C++'], answers: { technologie: '' } },
             { label: 'Utilisez-vous des frameworks JavaScript ?', type: 'radio', options: ['Oui', 'Non'], answers: { technologie: '' } },
             { label: 'Quelle est votre plateforme de développement préférée ?', type: 'radio', options: ['Visual Studio Code', 'IntelliJ IDEA', 'Eclipse'], answers: { technologie: '' } },
             // Ajoutez d'autres questions pour le secteur technologie
           ],
           sante: [
-            { label: 'Quelle activité sportive préférez-vous ?', type: 'select', options: ['Course à pied', 'Natation', 'Yoga', 'Football'], answers: { sante: '' } },
+            { label: 'Quelle activité sportive préférez-vous ?', type: 'radio', options: ['Course à pied', 'Natation', 'Yoga', 'Football'], answers: { sante: '' } },
             { label: 'Suivez-vous un régime alimentaire ?', type: 'radio', options: ['Oui', 'Non'], answers: { sante: '' } },
             { label: 'Combien d\'heures de sommeil avez-vous en moyenne par nuit ?', type: 'select', options: ['Moins de 5 heures', '5-7 heures', 'Plus de 7 heures'], answers: { sante: '' } },
             // Ajoutez d'autres questions pour le secteur santé
@@ -86,7 +88,7 @@
           mode: [
             { label: 'Quel style vestimentaire préférez-vous ?', type: 'radio', options: ['Décontracté', 'Classique', 'Sportif'], answers: { mode: '' } },
             { label: 'Préférez-vous les vêtements de marque ?', type: 'radio', options: ['Oui', 'Non'], answers: { mode: '' } },
-            { label: 'Quel accessoire de mode ne quittez-vous jamais ?', type: 'select', options: ['Montre', 'Bijoux', 'Chapeau', 'Sac à main'], answers: { mode: '' } },
+            { label: 'Quel accessoire de mode ne quittez-vous jamais ?', type: 'radio', options: ['Montre', 'Bijoux', 'Chapeau', 'Sac à main'], answers: { mode: '' } },
             // Ajoutez d'autres questions pour le secteur mode
           ],
           // Ajoutez d'autres secteurs et leurs questions ici
