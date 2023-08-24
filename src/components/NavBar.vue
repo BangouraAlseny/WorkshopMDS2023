@@ -3,8 +3,8 @@
         <div id="wrapper">
 
             <aside id="sidebar-wrapper">
-              <div class="sidebar-brand">
-                  <h2><span style="color:grey">T</span><span style="color:orange">M</span></h2>
+              <div class="sidebar-brand" style="background: #222;">
+                  <h2><span style="color:#fff">T</span><span style="color:orange">M</span></h2>
               </div>
               <ul class="sidebar-nav">
                   <li class="active">
@@ -17,7 +17,12 @@
                   <a href="#" title="Demo"><i class="fa fa-window-maximize"></i>Démo</a>
                   </li>
               </ul>
-              <div class="sidebar-brand position-absolute top-50 translate-middle" style="right: 0;">
+              <div class="position-absolute top-50 translate-middle" style="right: 0; position: block;
+    width: -moz-max-content;
+    width: max-content;
+    margin: 0 10px;
+    text-align: center;
+    padding: 0 20px;">
                 <ul class="sidebar-nav justify-content-end">
                   <li>
                     <a href="#" title="Contact"><i class="fa fa-phone"></i>Contact</a>
@@ -85,7 +90,7 @@ a:focus {
   margin-left: -250px;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #222;
+  background: #fff;
   transition: all 0.5s ease;
 }
 
@@ -96,15 +101,14 @@ a:focus {
 .sidebar-brand {
   position: block;
   width: max-content;
-  margin: 0 10px;
   text-align: center;
-  padding: 20px 20px;
+  padding: 20px 30px;
 }
 .sidebar-brand h2 {
   margin: 0;
   font-weight: 600;
   font-size: 24px;
-  color: #fff;
+  color: #222;
 }
 
 .sidebar-nav {
@@ -125,7 +129,7 @@ a:focus {
   height: 65px;
   padding: 2px 5px 2px 0;
   text-decoration: none;
-  color: #757575;
+  color: #222;
   font-weight: 600;
   font-size: 18px;
 }
