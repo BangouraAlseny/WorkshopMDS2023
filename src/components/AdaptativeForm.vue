@@ -1,11 +1,21 @@
 <template>
-    <div id="uform" style="min-height: 100vh;">
+    <div id="uform" style="min-height: 100vh; display: flex!important; flex-direction: column; justify-content: center; overflow: hidden;">
       <div class="mb-5"></div>
       <form class="d-flex flex-column justify-content-center align-items-center">
+
+        <!-- CONTAINER 1 -->
         <transition name="slide-fade" mode="out-in">  
           <div v-if="currentContainer === 1" key="container1" class="container d-flex justify-content-center align-items-center flex-column">
-              <div class="col-8 p-4 shadow rounded-4" style="background: #fff; border-bottom: solid orange 4px;">
-                <h2 class="mb-3" style="color: #222">Personnalisez <span class="title_underline">votre Solution</span></h2>
+            <div style="z-index: 0;">
+              <img class="position-absolute start-0 top-0"  src="../assets/circuit.svg" alt="" srcset="">
+              <img class="position-absolute start-50 top-0"  src="../assets/circuit2.svg" alt="" srcset="">
+              <img class="position-absolute start-0" style="top: -100px;" src="../assets/circuit2.svg" alt="" srcset="">
+              <img class="position-absolute top-50" style="right: -870px;;"  src="../assets/circuit3.svg" alt="" srcset="">
+              <img class="position-absolute" style="left: -830px; bottom: -170px; transform: rotate(180deg);"  src="../assets/circuit3.svg" alt="" srcset="">
+            </div>
+              <div class="col-8 p-4" style="z-index: 1;">
+                <h2 class="mb-3" style="color: #222">Construisez <span class="title_underline">votre Solution</span></h2>
+                <p>Pour commencer, nous aurions besoin d'en savoir un peu plus sur vous</p>
                     <!-- formulaire -->
                     <div class="d-flex flex-column justify-content-center align-items-center col-12">
                       <div class="form-floating mb-3 col-5">
@@ -51,9 +61,74 @@
                 </div> -->
             </div>
           </transition>
+
+          <!-- CONTAINER 2 -->
           <transition name="slide-fade" mode="out-in">
-            <div v-if="currentContainer === 2" key="container2" class="w-100 position-absolute top-50 start-50 translate-middle">
-                <img src="../assets/loader_tm.gif" alt="" srcset="">
+            <div v-if="currentContainer === 2" key="container2" class="w-100 position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center flex-column">
+              <div style="z-index: 0; height: 100vh;" class="w-100 position-absolute">
+                <img class="position-absolute start-0 top-0"  src="../assets/circuit.svg" alt="" srcset="">
+                <img class="position-absolute start-50 top-0"  src="../assets/circuit2.svg" alt="" srcset="">
+                <img class="position-absolute start-0" style="top: -100px;" src="../assets/circuit2.svg" alt="" srcset="">
+                <img class="position-absolute top-50" style="right: -870px;;"  src="../assets/circuit3.svg" alt="" srcset="">
+                <img class="position-absolute" style="left: -830px; bottom: -170px; transform: rotate(180deg);"  src="../assets/circuit3.svg" alt="" srcset="">
+            </div>
+              <div v-if="isLoading" style="z-index: 1;">
+                <div>
+                  <h3 style="font-size: 40px; color: #222; font-weight: bold;">Votre solution est <br> en cours de construction</h3>
+                </div>
+                <div>
+                  <img src="../assets/loader.gif" alt="" srcset="">
+                </div>
+                <!-- <div class="col-5 d-flex justify-content-center align-items-center">
+                  <svg class="mx-3" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <mask id="mask0_112_25" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="30" height="30">
+                      <path d="M15 28C16.7075 28.0022 18.3986 27.6669 19.9761 27.0135C21.5537 26.36 22.9865 25.4013 24.1923 24.1923C25.4013 22.9865 26.36 21.5537 27.0135 19.9761C27.6669 18.3986 28.0022 16.7075 28 15C28.0022 13.2925 27.6669 11.6014 27.0134 10.0239C26.36 8.44636 25.4012 7.01353 24.1923 5.80771C22.9865 4.59873 21.5537 3.63996 19.9761 2.98651C18.3986 2.33305 16.7075 1.9978 15 2.00001C13.2925 1.99783 11.6014 2.3331 10.0239 2.98656C8.44636 3.64001 7.01353 4.59876 5.80771 5.80771C4.59876 7.01353 3.64001 8.44636 2.98656 10.0239C2.3331 11.6014 1.99783 13.2925 2.00001 15C1.9978 16.7075 2.33305 18.3986 2.98651 19.9761C3.63996 21.5537 4.59873 22.9865 5.80771 24.1923C7.01353 25.4012 8.44636 26.36 10.0239 27.0134C11.6014 27.6669 13.2925 28.0022 15 28Z" fill="white" stroke="white" stroke-width="4" stroke-linejoin="round"/>
+                      <path d="M9.80005 15L13.7 18.9L21.5 11.1" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </mask>
+                    <g mask="url(#mask0_112_25)">
+                      <path d="M-0.600098 -0.599976H30.5999V30.6H-0.600098V-0.599976Z" fill="#FFA900"/>
+                    </g>
+                  </svg>
+                  <p style="margin: 0; padding: 0; font-weight: bold;">Assemblage des modules</p>
+                  
+                </div> -->
+              </div>
+              <div style="height: 50px;" class="col-12 d-flex justify-content-center align-items-center">
+                <div  v-if="showPhrases" class="col-5 d-flex justify-content-center align-items-center">
+
+                  <svg class="mx-3 svg-ico" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                      <mask id="mask0_112_25" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="30" height="30">
+                        <path d="M15 28C16.7075 28.0022 18.3986 27.6669 19.9761 27.0135C21.5537 26.36 22.9865 25.4013 24.1923 24.1923C25.4013 22.9865 26.36 21.5537 27.0135 19.9761C27.6669 18.3986 28.0022 16.7075 28 15C28.0022 13.2925 27.6669 11.6014 27.0134 10.0239C26.36 8.44636 25.4012 7.01353 24.1923 5.80771C22.9865 4.59873 21.5537 3.63996 19.9761 2.98651C18.3986 2.33305 16.7075 1.9978 15 2.00001C13.2925 1.99783 11.6014 2.3331 10.0239 2.98656C8.44636 3.64001 7.01353 4.59876 5.80771 5.80771C4.59876 7.01353 3.64001 8.44636 2.98656 10.0239C2.3331 11.6014 1.99783 13.2925 2.00001 15C1.9978 16.7075 2.33305 18.3986 2.98651 19.9761C3.63996 21.5537 4.59873 22.9865 5.80771 24.1923C7.01353 25.4012 8.44636 26.36 10.0239 27.0134C11.6014 27.6669 13.2925 28.0022 15 28Z" fill="white" stroke="white" stroke-width="4" stroke-linejoin="round"/>
+                        <path d="M9.80005 15L13.7 18.9L21.5 11.1" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                      </mask>
+                      <g mask="url(#mask0_112_25)">
+                        <path d="M-0.600098 -0.599976H30.5999V30.6H-0.600098V-0.599976Z" fill="#FFA900"/>
+                      </g>
+                  </svg>
+                  <p class="phrase" style="margin: 0; padding: 0; font-weight: bold;">{{ currentPhrase }}</p>
+                </div>
+              </div>
+            </div>
+          </transition>
+
+          <!-- CONTAINER 3 -->
+          <transition name="slide-fade" mode="out-in">
+            <div v-if="currentContainer === 3" key="container3" class="w-100 position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center flex-column">
+              <div>
+                <h3 style="font-size: 40px; color: #222; font-weight: bold;">Votre solution est <br> en cours de construction</h3>
+              </div>
+              <div class="col-5 d-flex justify-content-center align-items-center">
+                <svg class="mx-3" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                  <mask id="mask0_112_25" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="30" height="30">
+                    <path d="M15 28C16.7075 28.0022 18.3986 27.6669 19.9761 27.0135C21.5537 26.36 22.9865 25.4013 24.1923 24.1923C25.4013 22.9865 26.36 21.5537 27.0135 19.9761C27.6669 18.3986 28.0022 16.7075 28 15C28.0022 13.2925 27.6669 11.6014 27.0134 10.0239C26.36 8.44636 25.4012 7.01353 24.1923 5.80771C22.9865 4.59873 21.5537 3.63996 19.9761 2.98651C18.3986 2.33305 16.7075 1.9978 15 2.00001C13.2925 1.99783 11.6014 2.3331 10.0239 2.98656C8.44636 3.64001 7.01353 4.59876 5.80771 5.80771C4.59876 7.01353 3.64001 8.44636 2.98656 10.0239C2.3331 11.6014 1.99783 13.2925 2.00001 15C1.9978 16.7075 2.33305 18.3986 2.98651 19.9761C3.63996 21.5537 4.59873 22.9865 5.80771 24.1923C7.01353 25.4012 8.44636 26.36 10.0239 27.0134C11.6014 27.6669 13.2925 28.0022 15 28Z" fill="white" stroke="white" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M9.80005 15L13.7 18.9L21.5 11.1" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </mask>
+                  <g mask="url(#mask0_112_25)">
+                    <path d="M-0.600098 -0.599976H30.5999V30.6H-0.600098V-0.599976Z" fill="#FFA900"/>
+                  </g>
+                </svg>
+                <p style="margin: 0; padding: 0; font-weight: bold;">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAssemblage des modules</p>
+              </div>
             </div>
           </transition>
       </form>
@@ -67,6 +142,15 @@
         selectedSector: '',
         currentQuestion: 0,
         currentContainer: 1,
+        isLoading: false,
+        showPhrases: true,
+        currentPhraseIndex: 0,
+        currentPhrase: "Assemblage des modules",
+        phrases: [
+          "Assemblage des modules",
+          "Construction de l'interface",
+          "Connexion au serveur"
+        ],
         sectors: [
           { label: 'Agriculture', value: 'agriculture' },
           { label: 'Automobile', value: 'automobile' },
@@ -118,25 +202,42 @@
         return '';
       }
     },
+    mounted() {
+      this.displayPhrases();
+    },
     methods: {
-      transitionToContainer(containerNumber) {
-        this.currentContainer = containerNumber;
-      },
-      resetContainers() {
-        this.currentContainer = 1;
-      },
-      submitForm() {
-        alert('Formulaire soumis avec succès!');
-        // ici pour envoyer la requête au serveur etc..
-      },
-      getQuestions(sector) {
-        return this.questions[sector];
-      },
-      nextQuestion() {
-        if (this.currentQuestion < this.questions[this.selectedSector].length - 1) {
-          this.currentQuestion++;
-        }
-      },
+        displayPhrases() {
+          setInterval(() => {
+            this.showPhrases = false;
+
+            setTimeout(() => {
+              this.currentPhraseIndex = (this.currentPhraseIndex + 1) % this.phrases.length;
+              this.currentPhrase = this.phrases[this.currentPhraseIndex];
+              this.showPhrases = true;
+            }, 300); // Durée d'affichage de chaque phrase en millisecondes
+          }, 4000); // Délai entre chaque phrase en millisecondes
+        },
+        transitionToContainer(containerNumber) {
+          this.currentContainer = containerNumber;
+          if (containerNumber === 2) {
+            this.isLoading = true;
+            setTimeout(() => {
+              this.isLoading = false;
+              this.transitionToContainer(3); // Passer au container 3 après 10 secondes
+            }, 11000); // Délai de 10 secondes
+          }
+        },
+        resetContainers() {
+          this.currentContainer = 1;
+        },
+        getQuestions(sector) {
+          return this.questions[sector];
+        },
+        nextQuestion() {
+          if (this.currentQuestion < this.questions[this.selectedSector].length - 1) {
+            this.currentQuestion++;
+          }
+        },
     },
   };
   </script>
@@ -144,8 +245,33 @@
   <style>
 
 
+.fade-up-enter-active, .fade-up-leave-active {
+  transition: opacity 1s, transform 1s;
+}
+.fade-up-enter, .fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.phrase {
+  margin-bottom: 20px;
+  animation: fadeInUp 1s ease-in-out;
+  animation-fill-mode: both;
+}
+.svg-ico{
+  animation: fadeInUp 1s ease-in-out;
+  animation-fill-mode: both;
+}
 
-
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 
 
