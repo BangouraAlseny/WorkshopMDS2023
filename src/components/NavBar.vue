@@ -3,20 +3,32 @@
         <div id="wrapper">
 
             <aside id="sidebar-wrapper">
-              <div class="sidebar-brand">
-                  <h2><span style="color:grey">T</span><span style="color:orange">M</span></h2>
+              <div class="sidebar-brand" style="background: #222;">
+                  <h2><span style="color:#fff">T</span><span style="color:orange">M</span></h2>
               </div>
               <ul class="sidebar-nav">
                   <li class="active">
-                  <a href="#" title="Accueil"><i class="fa fa-home"></i></a>
+                  <a href="#" title="Accueil"><i class="fa fa-home"></i>Qui sommes-nous ?</a>
                   </li>
                   <li>
-                  <a href="#" title="Modules"><i class="fa fa-plug"></i></a>
+                  <a href="#" title="Modules"><i class="fa fa-plug"></i>Notre Solution</a>
                   </li>
                   <li>
-                  <a href="#" title="Connexion"><i class="fa fa-user"></i></a>
+                  <a href="#" title="Demo"><i class="fa fa-window-maximize"></i>Démo</a>
                   </li>
               </ul>
+              <div class="position-absolute top-50 translate-middle" style="right: 0; position: block;
+    width: -moz-max-content;
+    width: max-content;
+    margin: 0 10px;
+    text-align: center;
+    padding: 0 20px;">
+                <ul class="sidebar-nav justify-content-end">
+                  <li>
+                    <a href="#" title="Contact"><i class="fa fa-phone"></i>Contact</a>
+                  </li>
+                </ul>
+              </div>
             </aside>
           </div>
     </div>
@@ -27,6 +39,33 @@
 </script>
 
 <style>
+
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+	background-color: #F5F5F5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 a {
   transition: background 0.2s, color 0.2s;
 }
@@ -42,15 +81,16 @@ a:focus {
 }
 
 #sidebar-wrapper {
+  display: flex;
   z-index: 1000;
   position: fixed;
   left: 250px;
   width: 0;
-  height: 100%;
+  height: 65px;
   margin-left: -250px;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #222;
+  background: #fff;
   transition: all 0.5s ease;
 }
 
@@ -59,22 +99,21 @@ a:focus {
 }
 
 .sidebar-brand {
-  position: absolute;
-  top: 0;
-  width: 65px;
+  position: block;
+  width: max-content;
   text-align: center;
-  padding: 20px 0;
+  padding: 20px 30px;
 }
 .sidebar-brand h2 {
   margin: 0;
   font-weight: 600;
   font-size: 24px;
-  color: #fff;
+  color: #222;
 }
 
 .sidebar-nav {
-  position: absolute;
-  top: 75px;
+  display: flex;
+  position: block;
   width: 65px;
   margin: 0;
   padding: 0;
@@ -84,12 +123,15 @@ a:focus {
   line-height: 42px;
 }
 .sidebar-nav > li a {
-  display: block;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 65px;
+  padding: 2px 5px 2px 0;
   text-decoration: none;
-  color: #757575;
+  color: #222;
   font-weight: 600;
   font-size: 18px;
-  padding: 0 15px 0 0;
 }
 .sidebar-nav > li > a:hover,
 .sidebar-nav > li.active > a {
@@ -98,8 +140,8 @@ a:focus {
   background: orange;
 }
 .sidebar-nav > li > a i.fa {
-  font-size: 24px;
-  width: 60px;
+  font-size: 20px;
+  width: 50px;
 }
 
 #navbar-wrapper {
@@ -146,7 +188,7 @@ a:focus {
   }
 
   #sidebar-wrapper {
-    width: 65px;
+    width: 100vw;
   }
   
   #wrapper.toggled #sidebar-wrapper {

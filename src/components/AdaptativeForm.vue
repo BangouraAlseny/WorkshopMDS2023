@@ -1,9 +1,31 @@
 <template>
     <div id="uform">
-      <h1>Formulaire <span style="color:grey;">Talk</span><span style="color:orange">Me</span></h1>
+      <div class="mb-5"></div>
       <form class="d-flex flex-column justify-content-center align-items-center">
         <div class="container d-flex justify-content-center align-items-center flex-column">
-            
+          <div class="col-8 p-4 shadow rounded-4" style="background: #fff; border-bottom: solid orange 4px;">
+            <h2 class="mb-3" style="color: #222">Personnalisez <span class="title_underline">votre Solution</span></h2>
+                <!-- formulaire -->
+                <div class="d-flex flex-column justify-content-center align-items-center col-12">
+                  <div class="form-floating mb-3 col-5">
+                    <input type="text" class="form-control" id="floatingCompany" placeholder="Nom de l'entreprise">
+                    <label for="floatingCompany"><i class="fa fa-home px-2"></i>Nom de l'entreprise</label>
+                  </div>
+                  <div class="form-floating mb-3 col-5">
+                    <input type="text" class="form-control" id="floatingPoste" placeholder="Poste occupé">
+                    <label for="floatingPoste"><i class="fa fa-user px-2"></i>Poste occupé</label>
+                  </div>
+                  <div class="form-floating mb-3 col-5">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="adresse.mail@example.com">
+                    <label for="floatingInput"><i class="fa fa-envelope px-2"></i>Adresse mail</label>
+                  </div>
+                  <div class="d-flex">
+                      <label class="switch mx-2"><input type="checkbox" />    <div></div>
+                      </label>
+                      <p>J'accepte recevoir des mails de mise à jours</p>
+                  </div>
+                </div>
+              </div>
               <div class="col-10">
                 <div :class="[selectedSector + '-section', 'section']">
                     <h3 class="mb-4">Sélectionnez votre secteur d'activité</h3>
@@ -134,9 +156,37 @@
   </script>
   
   <style>
+
+/* variables */
+:root{
+  --color-underline: orange;
+  --custom-ease-out: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+
   #uform{
     padding-top: 50px;
   }
+  .title_underline{
+    position: relative;
+  }
+.title_underline::after {
+		content: "";
+    position: absolute;
+    bottom: -0.01em;
+    left: 0;
+    width: 100%;
+    height: 0px;
+    background-repeat: no-repeat;
+    background: var(--color-underline);
+    transition: all .3s ease;
+	}
+	
+	.title_underline:hover::after {
+    transition: all .3s ease;
+    height: 4px;
+  }
+
   div.card-checkbox{
     position: relative;
     cursor: pointer;
@@ -212,5 +262,46 @@
     background-color: lightgray;
     cursor: not-allowed;
   }
+
+/* switch btn */
+.switch input {
+  position: absolute;
+  opacity: 0;
+}
+
+/**
+ * 1. Adjust this to size
+ */
+
+.switch {
+  display: inline-block;
+  font-size: 20px; /* 1 */
+  height: 1em;
+  width: 2em;
+  background: #ece8d599;
+  box-shadow: inset #22222245 0 0 10px 2px;
+  border-radius: 1em;
+}
+
+.switch div {
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  border: solid #e6e4e46f 2px;
+  background: #f11b1b;
+  box-shadow: 0 0.1em 0.3em rgba(0,0,0,0.3);
+  -webkit-transition: all 300ms;
+     -moz-transition: all 300ms;
+          transition: all 300ms;
+}
+
+.switch input:checked + div {
+  -webkit-transform: translate3d(100%, 0, 0);
+     -moz-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+  background: green;
+}
+
+
   </style>
   
