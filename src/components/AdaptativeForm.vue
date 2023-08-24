@@ -27,11 +27,11 @@
                       </div>
                       <div class="d-flex flex-column justify-items-around align-content-center mt-4" style="width: 250px;">
                         <button @click="transitionToContainer(2)" class="btn btn-success mb-3">Continuer</button>
-                        <p class="text-muted">Passer l'étape</p>
+                        <a @click="transitionToContainer(2)" class="text-muted">Passer l'étape</a>
                       </div>
                     </div>
                   </div>
-                  <div class="col-10">
+                  <!-- <div class="col-10">
                     <div :class="[selectedSector + '-section', 'section']">
                         <h3 class="mb-4">Sélectionnez votre secteur d'activité</h3>
                         
@@ -48,14 +48,12 @@
                             <p>{{ question.label }}</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
           </transition>
           <transition name="slide-fade" mode="out-in">
             <div v-if="currentContainer === 2" key="container2" class="w-100 position-absolute top-50 start-50 translate-middle">
-                <p>LOADEEEEEEEEEER</p>
-                <p>*bruit de féraille*</p>
-                <p>*marteau qui tappe*</p>
+                <img src="../assets/loader_tm.gif" alt="" srcset="">
             </div>
           </transition>
       </form>
@@ -144,6 +142,16 @@
   </script>
   
   <style>
+
+
+
+
+
+
+
+
+
+
 
 /* variables */
 :root{
