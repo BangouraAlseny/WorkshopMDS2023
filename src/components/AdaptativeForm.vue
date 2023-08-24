@@ -1,5 +1,6 @@
 <template>
     <div id="uform">
+      <div class="mb-5"></div>
       <h1>Formulaire <span style="color:grey;">Talk</span><span style="color:orange">Me</span></h1>
       <form class="d-flex flex-column justify-content-center align-items-center">
         <div class="container d-flex justify-content-center align-items-center flex-column">

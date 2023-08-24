@@ -8,15 +8,22 @@
               </div>
               <ul class="sidebar-nav">
                   <li class="active">
-                  <a href="#" title="Accueil"><i class="fa fa-home"></i></a>
+                  <a href="#" title="Accueil"><i class="fa fa-home"></i>Qui sommes-nous ?</a>
                   </li>
                   <li>
-                  <a href="#" title="Modules"><i class="fa fa-plug"></i></a>
+                  <a href="#" title="Modules"><i class="fa fa-plug"></i>Notre Solution</a>
                   </li>
                   <li>
-                  <a href="#" title="Connexion"><i class="fa fa-user"></i></a>
+                  <a href="#" title="Demo"><i class="fa fa-window-maximize"></i>Démo</a>
                   </li>
               </ul>
+              <div class="sidebar-brand position-absolute top-50 translate-middle" style="right: 0;">
+                <ul class="sidebar-nav justify-content-end">
+                  <li>
+                    <a href="#" title="Connexion"><i class="fa fa-user"></i>Connexion</a>
+                  </li>
+                </ul>
+              </div>
             </aside>
           </div>
     </div>
@@ -42,11 +49,12 @@ a:focus {
 }
 
 #sidebar-wrapper {
+  display: flex;
   z-index: 1000;
   position: fixed;
   left: 250px;
   width: 0;
-  height: 100%;
+  height: 65px;
   margin-left: -250px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -59,11 +67,11 @@ a:focus {
 }
 
 .sidebar-brand {
-  position: absolute;
-  top: 0;
-  width: 65px;
+  position: block;
+  width: max-content;
+  margin: 0 10px;
   text-align: center;
-  padding: 20px 0;
+  padding: 20px 20px;
 }
 .sidebar-brand h2 {
   margin: 0;
@@ -73,8 +81,8 @@ a:focus {
 }
 
 .sidebar-nav {
-  position: absolute;
-  top: 75px;
+  display: flex;
+  position: block;
   width: 65px;
   margin: 0;
   padding: 0;
@@ -84,12 +92,15 @@ a:focus {
   line-height: 42px;
 }
 .sidebar-nav > li a {
-  display: block;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 65px;
+  padding: 2px 5px 2px 0;
   text-decoration: none;
   color: #757575;
   font-weight: 600;
   font-size: 18px;
-  padding: 0 15px 0 0;
 }
 .sidebar-nav > li > a:hover,
 .sidebar-nav > li.active > a {
@@ -98,8 +109,8 @@ a:focus {
   background: orange;
 }
 .sidebar-nav > li > a i.fa {
-  font-size: 24px;
-  width: 60px;
+  font-size: 20px;
+  width: 50px;
 }
 
 #navbar-wrapper {
@@ -146,7 +157,7 @@ a:focus {
   }
 
   #sidebar-wrapper {
-    width: 65px;
+    width: 100vw;
   }
   
   #wrapper.toggled #sidebar-wrapper {
