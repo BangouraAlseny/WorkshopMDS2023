@@ -20,7 +20,7 @@
               <div class="sidebar-brand position-absolute top-50 translate-middle" style="right: 0;">
                 <ul class="sidebar-nav justify-content-end">
                   <li>
-                    <a href="#" title="Connexion"><i class="fa fa-user"></i>Connexion</a>
+                    <a href="#" title="Contact"><i class="fa fa-phone"></i>Contact</a>
                   </li>
                 </ul>
               </div>
@@ -34,6 +34,33 @@
 </script>
 
 <style>
+
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+	background-color: #F5F5F5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 a {
   transition: background 0.2s, color 0.2s;
 }
