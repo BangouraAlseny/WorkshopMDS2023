@@ -2,60 +2,62 @@
     <div id="uform" style="min-height: 100vh;">
       <div class="mb-5"></div>
       <form class="d-flex flex-column justify-content-center align-items-center">
+        <transition name="slide-fade" mode="out-in">  
           <div v-if="currentContainer === 1" key="container1" class="container d-flex justify-content-center align-items-center flex-column">
-            <div class="col-8 p-4 shadow rounded-4" style="background: #fff; border-bottom: solid orange 4px;">
-              <h2 class="mb-3" style="color: #222">Personnalisez <span class="title_underline">votre Solution</span></h2>
-                  <!-- formulaire -->
-                  <div class="d-flex flex-column justify-content-center align-items-center col-12">
-                    <div class="form-floating mb-3 col-5">
-                      <input type="text" class="form-control" id="floatingCompany" placeholder="Nom de l'entreprise">
-                      <label for="floatingCompany"><i class="fa fa-home px-2"></i>Nom de l'entreprise</label>
-                    </div>
-                    <div class="form-floating mb-3 col-5">
-                      <input type="text" class="form-control" id="floatingPoste" placeholder="Poste occupé">
-                      <label for="floatingPoste"><i class="fa fa-user px-2"></i>Poste occupé</label>
-                    </div>
-                    <div class="form-floating mb-3 col-5">
-                      <input type="email" class="form-control" id="floatingInput" placeholder="adresse.mail@example.com">
-                      <label for="floatingInput"><i class="fa fa-envelope px-2"></i>Adresse mail</label>
-                    </div>
-                    <div class="d-flex">
-                        <label class="switch mx-2"><input type="checkbox" />    <div></div>
-                        </label>
-                        <p>J'accepte recevoir des mails de mise à jours</p>
-                    </div>
-                    <div class="d-flex flex-column justify-items-around align-content-center mt-4" style="width: 250px;">
-                      <button @click="transitionToContainer(2)" class="btn btn-success mb-3">Continuer</button>
-                      <p class="text-muted">Passer l'étape</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-10">
-                  <div :class="[selectedSector + '-section', 'section']">
-                      <h3 class="mb-4">Sélectionnez votre secteur d'activité</h3>
-                      
-                      <div class="d-flex justify-content-around">
-                          <label v-for="sector in sectors" :key="sector.value">
-                              <input type="checkbox" :id="sector.value" class="card-checkbox" :value="sector.value" v-model="selectedSectors" hidden>
-                              <div class="card-checkbox">
-                                {{ sector.label }}
-                              </div>
+              <div class="col-8 p-4 shadow rounded-4" style="background: #fff; border-bottom: solid orange 4px;">
+                <h2 class="mb-3" style="color: #222">Personnalisez <span class="title_underline">votre Solution</span></h2>
+                    <!-- formulaire -->
+                    <div class="d-flex flex-column justify-content-center align-items-center col-12">
+                      <div class="form-floating mb-3 col-5">
+                        <input type="text" class="form-control" id="floatingCompany" placeholder="Nom de l'entreprise">
+                        <label for="floatingCompany"><i class="fa fa-home px-2"></i>Nom de l'entreprise</label>
+                      </div>
+                      <div class="form-floating mb-3 col-5">
+                        <input type="text" class="form-control" id="floatingPoste" placeholder="Poste occupé">
+                        <label for="floatingPoste"><i class="fa fa-user px-2"></i>Poste occupé</label>
+                      </div>
+                      <div class="form-floating mb-3 col-5">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="adresse.mail@example.com">
+                        <label for="floatingInput"><i class="fa fa-envelope px-2"></i>Adresse mail</label>
+                      </div>
+                      <div class="d-flex">
+                          <label class="switch mx-2"><input type="checkbox" />    <div></div>
                           </label>
+                          <p>J'accepte recevoir des mails de mise à jours</p>
                       </div>
-
-                      <div v-for="(question, index) in getQuestions(selectedSectors)" :key="index" v-show="currentQuestion === index">
-                          <p>{{ question.label }}</p>
-                          <!-- Reste de la logique pour les questions -->
+                      <div class="d-flex flex-column justify-items-around align-content-center mt-4" style="width: 250px;">
+                        <button @click="transitionToContainer(2)" class="btn btn-success mb-3">Continuer</button>
+                        <p class="text-muted">Passer l'étape</p>
                       </div>
+                    </div>
                   </div>
-              </div>
-          </div>
+                  <div class="col-10">
+                    <div :class="[selectedSector + '-section', 'section']">
+                        <h3 class="mb-4">Sélectionnez votre secteur d'activité</h3>
+                        
+                        <div class="d-flex justify-content-around">
+                            <label v-for="sector in sectors" :key="sector.value">
+                                <input type="checkbox" :id="sector.value" class="card-checkbox" :value="sector.value" v-model="selectedSectors" hidden>
+                                <div class="card-checkbox">
+                                  {{ sector.label }}
+                                </div>
+                            </label>
+                        </div>
 
-          <div v-if="currentContainer === 2" key="container2" class="container bg-warning">
-            <p>LOADEEEEEEEEEER</p>
-            <p>*bruit de féraille*</p>
-            <p>*marteau qui tappe*</p>
-          </div>
+                        <div v-for="(question, index) in getQuestions(selectedSectors)" :key="index" v-show="currentQuestion === index">
+                            <p>{{ question.label }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </transition>
+          <transition name="slide-fade" mode="out-in">
+            <div v-if="currentContainer === 2" key="container2" class="w-100 position-absolute top-50 start-50 translate-middle">
+                <p>LOADEEEEEEEEEER</p>
+                <p>*bruit de féraille*</p>
+                <p>*marteau qui tappe*</p>
+            </div>
+          </transition>
       </form>
     </div>
   </template>
@@ -150,11 +152,18 @@
 }
 
 /* transitions */
-/* fade */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
+/* slide-fade */
+.slide-fade-enter-active {
+  transition: all 3.0s ease-out;
 }
-.fade-enter, .fade-leave-to {
+
+.slide-fade-leave-active {
+  transition: all .5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(1000px);
   opacity: 0;
 }
 
@@ -193,19 +202,19 @@
   }
   div.card-checkbox:hover{
     background: #71757a17;
-    outline: solid #4A586F 2px;
+    outline: solid orange 2px;
     outline-offset: -1px;
     transition: all .2s ease-out;
   }
   input.card-checkbox:checked + div.card-checkbox:hover{
-    outline: solid #4A586F 2px;
+    outline: solid orange 2px;
     outline-offset: 2px;
   }
 
   input.card-checkbox:checked + div.card-checkbox{
     border-radius: 10px;
     color: white;
-    background: #4A586F;
+    background: orange;
     transition: all .2s ease-out;
   }
   input.card-checkbox:checked + div.card-checkbox::after{
