@@ -7,15 +7,15 @@
                   <h2><span style="color:#fff">T</span><span style="color:orange">M</span></h2>
               </div>
               <ul class="sidebar-nav">
-                  <li class="active">
-                  <a href="#" title="Accueil"><i class="fa fa-home"></i>Qui sommes-nous ?</a>
-                  </li>
-                  <li>
+                <li>
                   <a href="#" title="Modules"><i class="fa fa-plug"></i>Notre Solution</a>
-                  </li>
-                  <li>
+                </li>
+                <li class="active">
                   <a href="#" title="Demo"><i class="fa fa-window-maximize"></i>Démo</a>
-                  </li>
+                </li>
+                <li>
+                <a href="#" title="Accueil"><i class="fa fa-home"></i>Qui sommes-nous ?</a>
+                </li>
               </ul>
               <div class="position-absolute top-50 translate-middle" style="right: 0; position: block;
     width: -moz-max-content;

@@ -1,82 +1,61 @@
 <template>
-    <div id="uform">
+    <div id="uform" style="min-height: 100vh;">
       <div class="mb-5"></div>
       <form class="d-flex flex-column justify-content-center align-items-center">
-        <div class="container d-flex justify-content-center align-items-center flex-column">
-          <div class="col-8 p-4 shadow rounded-4" style="background: #fff; border-bottom: solid orange 4px;">
-            <h2 class="mb-3" style="color: #222">Personnalisez <span class="title_underline">votre Solution</span></h2>
-                <!-- formulaire -->
-                <div class="d-flex flex-column justify-content-center align-items-center col-12">
-                  <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingCompany" placeholder="Nom de l'entreprise">
-                    <label for="floatingCompany"><i class="fa fa-home px-2"></i>Nom de l'entreprise</label>
-                  </div>
-                  <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingPoste" placeholder="Poste occupé">
-                    <label for="floatingPoste"><i class="fa fa-user px-2"></i>Poste occupé</label>
-                  </div>
-                  <div class="form-floating mb-3 col-5">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="adresse.mail@example.com">
-                    <label for="floatingInput"><i class="fa fa-envelope px-2"></i>Adresse mail</label>
-                  </div>
-                  <div class="d-flex">
-                      <label class="switch mx-2"><input type="checkbox" />    <div></div>
-                      </label>
-                      <p>J'accepte recevoir des mails de mise à jours</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-10">
-                <div :class="[selectedSector + '-section', 'section']">
-                    <h3 class="mb-4">Sélectionnez votre secteur d'activité</h3>
-                    
-                    <div class="d-flex justify-content-around">
-                        <label v-for="sector in sectors" :key="sector.value">
-                            <input type="checkbox" :id="sector.value" class="card-checkbox" :value="sector.value" v-model="selectedSectors" hidden>
-                            <div class="card-checkbox">
-                              {{ sector.label }}
-                            </div>
+          <div v-if="currentContainer === 1" key="container1" class="container d-flex justify-content-center align-items-center flex-column">
+            <div class="col-8 p-4 shadow rounded-4" style="background: #fff; border-bottom: solid orange 4px;">
+              <h2 class="mb-3" style="color: #222">Personnalisez <span class="title_underline">votre Solution</span></h2>
+                  <!-- formulaire -->
+                  <div class="d-flex flex-column justify-content-center align-items-center col-12">
+                    <div class="form-floating mb-3 col-5">
+                      <input type="text" class="form-control" id="floatingCompany" placeholder="Nom de l'entreprise">
+                      <label for="floatingCompany"><i class="fa fa-home px-2"></i>Nom de l'entreprise</label>
+                    </div>
+                    <div class="form-floating mb-3 col-5">
+                      <input type="text" class="form-control" id="floatingPoste" placeholder="Poste occupé">
+                      <label for="floatingPoste"><i class="fa fa-user px-2"></i>Poste occupé</label>
+                    </div>
+                    <div class="form-floating mb-3 col-5">
+                      <input type="email" class="form-control" id="floatingInput" placeholder="adresse.mail@example.com">
+                      <label for="floatingInput"><i class="fa fa-envelope px-2"></i>Adresse mail</label>
+                    </div>
+                    <div class="d-flex">
+                        <label class="switch mx-2"><input type="checkbox" />    <div></div>
                         </label>
+                        <p>J'accepte recevoir des mails de mise à jours</p>
                     </div>
-
-                    <div v-for="(question, index) in getQuestions(selectedSectors)" :key="index" v-show="currentQuestion === index">
-                        <p>{{ question.label }}</p>
-                        <!-- Reste de la logique pour les questions -->
+                    <div class="d-flex flex-column justify-items-around align-content-center mt-4" style="width: 250px;">
+                      <button @click="transitionToContainer(2)" class="btn btn-success mb-3">Continuer</button>
+                      <p class="text-muted">Passer l'étape</p>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        
-        <div style="height: 70vh;" class="bg-warning col-10">
-          <div :class="[selectedSector + '-section', 'section']">
-            <h2>Questions pour le secteur {{ selectedSector }}</h2>
-            <div v-for="(question, index) in getQuestions(selectedSector)" :key="index" v-show="currentQuestion === index">
-              <p>{{ question.label }}</p>
-              <template v-if="question.type === 'radio'">
-                  <div class="d-flex justify-content-center flex-wrap">
-                      <div v-for="(option, optionIndex) in question.options" :key="optionIndex">
-                          <label>
-                            <input :type="question.type" :name="'question-' + index" :value="option" v-model="question.answers[selectedSector]" @change="nextQuestion" hidden />
-                            <div class="card m-3 justify-content-center align-item-center" style="width: 150px; height: 150px;">{{ option }}</div>
+                <div class="col-10">
+                  <div :class="[selectedSector + '-section', 'section']">
+                      <h3 class="mb-4">Sélectionnez votre secteur d'activité</h3>
+                      
+                      <div class="d-flex justify-content-around">
+                          <label v-for="sector in sectors" :key="sector.value">
+                              <input type="checkbox" :id="sector.value" class="card-checkbox" :value="sector.value" v-model="selectedSectors" hidden>
+                              <div class="card-checkbox">
+                                {{ sector.label }}
+                              </div>
                           </label>
                       </div>
+
+                      <div v-for="(question, index) in getQuestions(selectedSectors)" :key="index" v-show="currentQuestion === index">
+                          <p>{{ question.label }}</p>
+                          <!-- Reste de la logique pour les questions -->
+                      </div>
                   </div>
-              </template>
-              <template v-else-if="question.type === 'select'">
-                <select v-model="question.answers[selectedSector]" @change="nextQuestion">
-                  <option value="">Choisissez une réponse</option>
-                  <option v-for="(option, optionIndex) in question.options" :key="optionIndex" :value="option">{{ option }}</option>
-                </select>
-              </template>
-            </div>
+              </div>
           </div>
-        </div>
-  
-        <div v-if="remainingQuestions === 0">
-          <p>Vous avez répondu à toutes les questions requises.</p>
-        </div>
-  
-        <button @click="submitForm" v-if="remainingQuestions === 0">Prise de contact</button>
+
+          <div v-if="currentContainer === 2" key="container2" class="container bg-warning">
+            <p>LOADEEEEEEEEEER</p>
+            <p>*bruit de féraille*</p>
+            <p>*marteau qui tappe*</p>
+          </div>
       </form>
     </div>
   </template>
@@ -87,6 +66,7 @@
       return {
         selectedSector: '',
         currentQuestion: 0,
+        currentContainer: 1,
         sectors: [
           { label: 'Agriculture', value: 'agriculture' },
           { label: 'Automobile', value: 'automobile' },
@@ -139,6 +119,12 @@
       }
     },
     methods: {
+      transitionToContainer(containerNumber) {
+        this.currentContainer = containerNumber;
+      },
+      resetContainers() {
+        this.currentContainer = 1;
+      },
       submitForm() {
         alert('Formulaire soumis avec succès!');
         // ici pour envoyer la requête au serveur etc..
@@ -163,6 +149,14 @@
   --custom-ease-out: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* transitions */
+/* fade */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 
   #uform{
     padding-top: 50px;
@@ -279,7 +273,7 @@
   height: 1em;
   width: 2em;
   background: #ece8d599;
-  box-shadow: inset #22222245 0 0 10px 2px;
+  box-shadow: inset #2222222a 0 0 10px 2px;
   border-radius: 1em;
 }
 
